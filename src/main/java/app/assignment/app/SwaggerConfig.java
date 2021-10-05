@@ -1,4 +1,4 @@
-package app.assignment.config;
+package app.assignment.app;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -9,8 +9,7 @@ import springfox.documentation.spring.web.plugins.Docket;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 @Configuration
-@EnableSwagger2
-@ComponentScan
+@ComponentScan(basePackages = "package app.assignment.app")
 public class SwaggerConfig {
 
     @Bean
