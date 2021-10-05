@@ -24,12 +24,15 @@ import java.util.List;
 public class AppController {
 
     @Autowired
-    private ProductRepository productRepository;
+    private ProductService productService;
 
     @RequestMapping(name = "products", method = RequestMethod.GET, produces = {MediaType.APPLICATION_JSON_VALUE})
-    public ResponseEntity getProducts(@RequestParam (required = false) String productName){
+    public ResponseEntity getProducts(@RequestParam (required = false) String brand,
+                                      @RequestParam (required = false) String priceRange){
+        if (brand == null) brand = "";
+        if (priceRange == null) priceRange = "";
 
-        return ResponseEntity.status(HttpStatus.OK).body(productRepository.findByName(productName));
+        return ResponseEntity.status(HttpStatus.OK).body(productService.getProducts(brand,priceRange));
     }
 
 }

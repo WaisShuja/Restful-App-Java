@@ -3,6 +3,7 @@ package app.assignment.app;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 import java.util.Date;
 @Entity
 @Table(name = "products")
@@ -16,8 +17,10 @@ public class Product {
     private double price;
     private Date creationDate;
     private Date modifyDate;
+    @Transient
+    private boolean isExpensive;
 
-    public Product(int id, String name, String brand, String color, double price, Date creationDate, Date modifyDate) {
+    public Product(int id, String name, String brand, String color, double price, Date creationDate, Date modifyDate, boolean isExpensive) {
         this.id = id;
         this.name = name;
         this.brand = brand;
@@ -25,6 +28,7 @@ public class Product {
         this.price = price;
         this.creationDate = creationDate;
         this.modifyDate = modifyDate;
+        this.isExpensive = isExpensive;
     }
 
     public Product() {
@@ -86,6 +90,14 @@ public class Product {
         this.modifyDate = modifyDate;
     }
 
+    public boolean isExpensive() {
+        return getPrice() > Constant.ISEXPENSIVE ? true : false;
+    }
+
+    public void setExpensive(boolean expensive) {
+        isExpensive = expensive;
+    }
+
     @Override
     public String toString() {
         return "Product{" +
@@ -96,6 +108,7 @@ public class Product {
                 ", price=" + price +
                 ", creationDate=" + creationDate +
                 ", modifyDate=" + modifyDate +
+                ", isExpensive=" + isExpensive +
                 '}';
     }
 }
