@@ -19,7 +19,7 @@ import java.util.List;
 @RestController
 @RequestMapping(name = "/api/v1")
 @Component
-@Service
+//@Service
 
 public class AppController {
 
@@ -28,11 +28,13 @@ public class AppController {
 
     @RequestMapping(name = "products", method = RequestMethod.GET, produces = {MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity getProducts(@RequestParam (required = false) String brand,
-                                      @RequestParam (required = false) String priceRange){
+                                      @RequestParam (required = false) String priceRange,
+                                      @RequestParam (required = false) String sortBy){
         if (brand == null) brand = "";
         if (priceRange == null) priceRange = "";
+        if (sortBy == null) sortBy = "";
 
-        return ResponseEntity.status(HttpStatus.OK).body(productService.getProducts(brand,priceRange));
+        return ResponseEntity.status(HttpStatus.OK).body(productService.getProducts(brand, priceRange, sortBy));
     }
 
 }
