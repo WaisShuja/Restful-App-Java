@@ -11,7 +11,7 @@
 	<groupId>app.assignment</groupId>
 	<artifactId>app</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>assignemntDemo</name>
+	<name>assignmentDemo</name>
 	<description>Assignment project for Spring Boot</description>
 	<properties>
 		<java.version>11</java.version>

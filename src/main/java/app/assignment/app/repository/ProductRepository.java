@@ -1,5 +1,6 @@
-package app.assignment.app;
+package app.assignment.app.repository;
 
+import app.assignment.app.bean.Product;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

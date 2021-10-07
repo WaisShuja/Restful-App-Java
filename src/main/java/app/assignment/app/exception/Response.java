@@ -1,4 +1,4 @@
-package app.assignment.app;
+package app.assignment.app.exception;
 
 public class Response {
     private String status;

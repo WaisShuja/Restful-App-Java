@@ -1,4 +1,4 @@
-package app.assignment.app;
+package app.assignment.app.bean;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -7,6 +7,9 @@ import javax.persistence.Transient;
 import java.util.Date;
 @Entity
 @Table(name = "products")
+/**
+ * POJO Class
+ */
 public class Product {
 
     @Id

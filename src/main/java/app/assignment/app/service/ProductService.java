@@ -1,6 +1,6 @@
-package app.assignment.app;
-
-
+package app.assignment.app.service;
+import app.assignment.app.bean.Product;
+import app.assignment.app.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -27,7 +27,7 @@ public class ProductService {
 //        Default return
          if (brand.isEmpty() && priceRange.isEmpty()) {
              products = getAllProducts(page, size);
-         } // ReturnByName
+         }
         else if(!brand.isEmpty() && priceRange.isEmpty()) {
 //         Filter By Brand
              products = productRepository.findByBrand(brand);
@@ -65,7 +65,12 @@ public class ProductService {
      }
 
 
-
+    /**
+     * @param page index starting from {@literal 0}
+     * @param size number of items
+     * @return list of the products unfiltered
+     * order - Descending
+     */
 
     private List<Product> getAllProducts(int page, int size){
         Page<Product> productPage = productRepository.findAll(PageRequest.of(page,size,Sort.by(Sort.Direction.DESC,"creationDate")));
@@ -92,7 +97,8 @@ public class ProductService {
                  .filter(product -> product.getPrice() > minPrice)
                  .filter((product -> product.getPrice() <= maxPrice))
                  .collect(Collectors.toList());
-         /*getAllProducts(page, size).stream()
+
+         /* return getAllProducts(page, size).stream()
                  .filter(brd -> brd.getBrand().equals(brand))
                  .filter(prd -> prd.getPrice() > minPrice ).
                  filter(prd ->  prd.getPrice() < maxPrice).collect(Collectors.toList());*/
@@ -100,8 +106,9 @@ public class ProductService {
      }
 
 
-
-
+    /**
+     * @param sortBy sort the products by name (A-Z), price (highest - lowest), creationDate (last created)
+     */
     private void sortProducts(String sortBy) {
         switch (sortBy) {
             case "name":
